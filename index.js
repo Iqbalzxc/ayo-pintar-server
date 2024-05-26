@@ -315,7 +315,7 @@ async function run() {
       const classes = await classesCollection.find(classesQuery).toArray();
       const newEnrolledData = {
         userMail: userEmail,
-        classId: classesId.map((id) => new ObjectId(id)),
+        classesId: classesId.map((id) => new ObjectId(id)),
         transactionId: paymentInfo.transactionId,
       };
 
@@ -351,7 +351,7 @@ async function run() {
     // Mendapatkan history pembayaran
     app.get("/payment-history/:email", async (req, res) => {
       const email = req.params.email;
-      const query = { userMail: email };
+      const query = { userEmail: email };
       const result = await paymentCollection
         .find(query)
         .sort({ date: -1 })
@@ -362,7 +362,7 @@ async function run() {
     // panjang history pembayaran
     app.get("/payment-history-length/:email", async (req, res) => {
       const email = req.params.email;
-      const query = { userMail: email };
+      const query = { userEmail: email };
       const total = await paymentCollection.countDocuments(query);
       res.send({ total });
     });
