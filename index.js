@@ -455,7 +455,7 @@ async function run() {
     // enrolled classes by email
     app.get("/enrolled-classes/:email", verifyJWT, async (req, res) => {
       const email = req.params.email;
-      const query = { userEmail: email }; // Before userMail
+      const query = { userMail: email }; 
       const pipeline = [
         {
           $match: query,
