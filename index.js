@@ -288,7 +288,7 @@ async function run() {
       const amount = parseInt(price) * 100;
       const paymentIntent = await stripe.paymentIntents.create({
         amount: amount,
-        currency: "usd",
+        currency: "IDR",
         payment_method_types: ["card"],
       });
       res.send({
